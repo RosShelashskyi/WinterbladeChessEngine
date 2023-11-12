@@ -3,7 +3,7 @@
 #include "board.h"
 #include "typesAndMacros.h"
 
-int* generateMoves(piece *p, INT board, INT wboard, INT bboard){
+INT* generateMoves(piece *p, INT board, INT wboard, INT bboard){
     switch(p->type){
         case KING:
             return generateKingMoves(p, board, wboard, bboard);
@@ -23,37 +23,149 @@ int* generateMoves(piece *p, INT board, INT wboard, INT bboard){
     }
 }
 
-int* generateKingMoves(piece *p, INT board, INT wboard, INT bboard){
-    int *moves = (int*)malloc(8 * sizeof(INT)); //allocate space for an array of possible moves
+INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard){
+    INT *moves = (INT*)malloc(8 * sizeof(INT));         //allocate space for an array of possible moves
     INT pos = p->position;
-    if(p->color = WHITE){                       //algorithm for the white king
-        int i = 0;                              //for incrementing the array
-        
-    }else{
+    int i = 0;                                          //for incrementing the array
+    //generate NW, N, and NE moves
+    if(!(pos & rank8)){                                 //if piece is not on rank 8
 
+        //NW move
+        if(!(pos & afile)){                             //if piece is not on the a file
+            INT npos = pos << 9;                        //create new position by shifting
+            i = calculateKingMove(p, board, wboard, bboard, npos, moves, i);
+        }
+
+        //N move
+        INT npos = pos << 8;                           //N move position
+        i = calculateKingMove(p, board, wboard, bboard, npos, moves, i);
+
+        //NE move
+        if(!(pos & hfile)){
+            INT npos = pos << 7;                        //NE move position
+            i = calculateKingMove(p, board, wboard, bboard, npos, moves, i);
+        }
     }
+
+    //generate W move
+    if(!(pos & afile)){
+        INT npos = pos << 1;                            //W move position
+        i = calculateKingMove(p, board, wboard, bboard, npos, moves, i);
+    }
+
+    //generate E move
+    if(!(pos & hfile)){
+        INT npos = pos >> 1;                             //E move position
+        i = calculateKingMove(p, board, wboard, bboard, npos, moves, i);
+    }
+
+    //generate SW, S, and SE moves
+    if(!(pos & rank1)){
+        //SW move
+        if(!(pos & afile)){
+            INT npos = pos >> 7;                        //SW move position
+            i = calculateKingMove(p, board, wboard, bboard, npos, moves, i);
+        }
+
+        //S move
+        INT npos = pos >> 8;                            //S move position
+        i = calculateKingMove(p, board, wboard, bboard, npos, moves, i);
+
+        //SE move
+        if(!(pos & hfile)){
+            INT npos = pos >> 9;                        //SE move position
+            i = calculateKingMove(p, board, wboard, bboard, npos, moves, i);
+        }
+    }
+
+    /*
+    Since there is no guarantee that the algorithm will add 8 moves to the array,
+    it is quite inefficient to leave all the free memory allocated.
+    So instead, let's create a new array of size i + 1 and put all the values in it.
+    That way we're only using as much memory as we need. 
+    */
+    INT *possibleMoves = (INT*)malloc((i + 1) * sizeof(INT));
+    for(int j = 0; j <= i; j++){
+        possibleMoves[j] = moves[j];
+    }
+
+    free(moves);
+
+    return possibleMoves;
+
 }
 
-int* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard){
+int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i){
+    
+    if(p->color == WHITE){
+        //algorithm for white king
+        if(!(npos & wboard)){                           //check for blockers
+            INT nboard = (board ^ p->position) | npos;  //create the new board with new position
+            INT nwboard = nboard ^ bboard;              //create the new white board with new position
+            //if the new move doesn't put the king in check, add it to the possible moves
+            if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
+                moves[i] = npos;
+                i++;
+            }
+        }
+    }else{
+        if(!(npos & bboard)){
+            INT nboard = (board ^ p->position) | npos;          //create the new board with new position
+            INT nbboard = nboard ^ wboard;                      //create the new black board with new position
+            //if the new move doesn't put the king in check, add it to the possible moves
+            if(!isKingInCheck(nboard, wboard, nbboard, BLACK)){
+                moves[i] = npos;
+                i++;
+            }
+        }
+    }
+    return i;
+
+    // if((p->color == WHITE && !(npos & wboard)) || p->color == BLACK && !(npos & bboard)){  
+    //     INT nboard = (board ^ p->position) | npos;          //create the new board with new position
+    //     if(p->color == WHITE){
+    //         //algorithm for white king                      
+    //         INT nwboard = nboard ^ bboard;          //create the new white board with new position
+    //         //if the new move doesn't put the king in check, add it to the possible moves
+    //         if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
+    //             moves[i] = npos;
+    //             i++;
+    //             return i;
+    //         }
+    //     }else{
+    //         //algorithm for black king
+    //         INT nbboard = nboard ^ wboard;
+    //         //if the new move doesn't put the king in check, add it to the possible moves
+    //         if(!isKingInCheck(nboard, wboard, nbboard, BLACK)){
+    //             moves[i] = npos;
+    //             return i;
+    //         }
+    //     }
+    // }
+    // return i;
+}
+
+
+INT* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard){
 
 }
 
-int* generateRookMoves(piece *p, INT board, INT wboard, INT bboard){
+INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard){
 
 }
 
-int* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard){
+INT* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard){
 
 }
 
-int* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard){
+INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard){
 
 }
 
-int* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard){
+INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard){
 
 }
 
-int isKingUnderCheck(piece *p){
+INT isKingInCheck(INT board, INT wboard, INT bboard, INT color){
     return 0;
 }
