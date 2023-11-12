@@ -1,6 +1,7 @@
 #pragma once
 #include "pieces.h"
 #include "board.h"
+#include "typesAndMacros.h"
 
 int* generateMoves(piece *p, INT board, INT wboard, INT bboard){
     switch(p->type){
@@ -23,7 +24,14 @@ int* generateMoves(piece *p, INT board, INT wboard, INT bboard){
 }
 
 int* generateKingMoves(piece *p, INT board, INT wboard, INT bboard){
+    int *moves = (int*)malloc(8 * sizeof(INT)); //allocate space for an array of possible moves
+    INT pos = p->position;
+    if(p->color = WHITE){                       //algorithm for the white king
+        int i = 0;                              //for incrementing the array
+        
+    }else{
 
+    }
 }
 
 int* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard){
