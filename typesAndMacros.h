@@ -13,3 +13,12 @@
 
 //defining a simple unsigned 64-bit integer type
 typedef uint64_t INT;
+
+//defining a struct type to represent the pieces
+typedef struct Piece{
+    INT position;
+    int color;
+    int value;
+    int type;
+    int possibleMoves[MAX_MOVES];
+} piece;

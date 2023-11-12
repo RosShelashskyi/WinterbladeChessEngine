@@ -2,15 +2,6 @@
 #include <stdint.h>
 #include "typesAndMacros.h"
 
-//defining a struct type to represent the pieces
-typedef struct Piece{
-    INT position;
-    int color;
-    int value;
-    int type;
-    int possibleMoves[MAX_MOVES];
-} piece;
-
 //declaring pointers for white pieces
 piece *W_King;
 piece *W_Queen;
