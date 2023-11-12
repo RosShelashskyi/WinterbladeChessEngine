@@ -1,7 +1,7 @@
 #pragma once
-#include "pieces.h"
-#include "board.h"
-#include "typesAndMacros.h"
+#include "moveGenerator.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 INT* generateMoves(piece *p, INT board, INT wboard, INT bboard){
     switch(p->type){
@@ -166,6 +166,6 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard){
 
 }
 
-INT isKingInCheck(INT board, INT wboard, INT bboard, INT color){
+int isKingInCheck(INT board, INT wboard, INT bboard, INT color){
     return 0;
 }

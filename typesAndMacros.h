@@ -1,3 +1,4 @@
+#pragma once
 #include <stdint.h>
 
 //defining values to be used throughout the program
@@ -20,5 +21,5 @@ typedef struct Piece{
     int color;
     int value;
     int type;
-    int possibleMoves[MAX_MOVES];
+    INT *possibleMoves;
 } piece;
