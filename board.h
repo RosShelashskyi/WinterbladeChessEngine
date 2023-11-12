@@ -24,14 +24,14 @@ INT BKnights;
 INT BBishops;
 INT BPawns;
 
-INT aFile;
-INT bFile;
-INT cFile;
-INT dFile;
-INT eFile;
-INT fFile;
-INT gFile;
-INT hFile;
+INT afile;
+INT bfile;
+INT cfile;
+INT dfile;
+INT efile;
+INT ffile;
+INT gfile;
+INT hfile;
 
 INT rank1;
 INT rank2;
