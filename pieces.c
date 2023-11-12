@@ -1,61 +1,7 @@
-#include <stdint.h>
+#pragma once
+#include "pieces.h"
 
-#define WHITE 0
-#define BLACK 1
-#define KING 0
-#define QUEEN 1
-#define ROOK 2
-#define KNIGHT 3
-#define BISHOP 4
-#define PAWN 5
-#define MAX_MOVES 30
-
-typedef uint64_t INT;
-
-typedef struct Piece{
-    INT position;
-    int color;
-    int value;
-    int type;
-    int possibleMoves[MAX_MOVES];
-} piece;
-
-//declaring pointers for white pieces
-piece *W_King;
-piece *W_Queen;
-piece *W_A_Rook;
-piece *W_H_Rook;
-piece *W_B_Knight;
-piece *W_G_Knight;
-piece *W_C_Bishop;
-piece *W_F_Bishop;
-piece *W_A_Pawn;
-piece *W_B_Pawn;
-piece *W_C_Pawn;
-piece *W_D_Pawn;
-piece *W_E_Pawn;
-piece *W_F_Pawn;
-piece *W_G_Pawn;
-piece *W_H_Pawn;
-
-//declaring pointer for black pieces
-piece *B_King;
-piece *B_Queen;
-piece *B_A_Rook;
-piece *B_H_Rook;
-piece *B_B_Knight;
-piece *B_G_Knight;
-piece *B_C_Bishop;
-piece *B_F_Bishop;
-piece *B_A_Pawn;
-piece *B_B_Pawn;
-piece *B_C_Pawn;
-piece *B_D_Pawn;
-piece *B_E_Pawn;
-piece *B_F_Pawn;
-piece *B_G_Pawn;
-piece *B_H_Pawn;
-
+//setting the white pieces
 void setWhitePieces(){
     W_King->color = WHITE;
     W_King->position = 0x0000000000000008;
@@ -138,6 +84,7 @@ void setWhitePieces(){
     W_H_Pawn->value = 1;
 }
 
+//setting the black pieces
 void setBlackPieces(){
     B_King->color = BLACK;
     B_King->position = 0x0800000000000000;
