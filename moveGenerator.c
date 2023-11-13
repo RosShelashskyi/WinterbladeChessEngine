@@ -86,12 +86,16 @@ INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
     */
     *moveCount = i + 1;
 
-    printf("%d\n", *moveCount);
-
     INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
-    for(int j = 0; j < *moveCount; j++){
-        possibleMoves[j] = moves[j];
+    for(int j = 0; j < i + 1; j++){
+        if(moves[j] != 0){
+            possibleMoves[j] = moves[j];
+        }else{
+            *moveCount = *moveCount - 1;
+        }
     }
+
+    printf("%d\n", *moveCount);
 
     free(moves);
 
