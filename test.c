@@ -16,7 +16,9 @@ void testKingMoves(){
     board = board | k.position;
     wboard = board | k.position;
 
-    INT *moves = generateMoves(&k, board, wboard, bboard);
+    int *moveCount;
+    *moveCount = 0;
+    INT *moves = generateMoves(&k, board, wboard, bboard, moveCount);
 
     INT m = 0;
 

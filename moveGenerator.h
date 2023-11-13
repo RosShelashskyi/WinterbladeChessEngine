@@ -3,20 +3,20 @@
 #include "board.h"
 #include "typesAndMacros.h"
 
-INT* generateMoves(piece *p, INT board, INT wboard, INT bboard);
+INT* generateMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);
 
-INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard);
+INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);
 
-INT* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard);
+INT* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);
 
-INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard);
+INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);
 
-INT* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard);
+INT* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);
 
-INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard);
+INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);
 
-INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard);
+INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);
 
 int isKingInCheck(INT board, INT wboard, INT bboard, INT color);
 
-int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i);
+int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount);
