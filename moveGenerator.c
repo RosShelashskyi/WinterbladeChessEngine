@@ -86,6 +86,8 @@ INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
     */
     *moveCount = i + 1;
 
+    printf("%d\n", *moveCount);
+
     INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
     for(int j = 0; j < *moveCount; j++){
         possibleMoves[j] = moves[j];
@@ -148,23 +150,23 @@ int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT
 
 
 INT* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
-
+    return 0;
 }
 
 INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
-
+    return 0;
 }
 
 INT* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
-
+    return 0;
 }
 
 INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
-
+    return 0;
 }
 
 INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
-
+    return 0;
 }
 
 int isKingInCheck(INT board, INT wboard, INT bboard, INT color){

@@ -3,28 +3,36 @@
 #include "typesAndMacros.h"
 #include "pieces.h"
 #include "board.h"
+#include "board.c"
 #include "moveGenerator.c"
 
 void testKingMoves(){
+    setBoards();
     INT board = 0;
     INT wboard = 0;
     INT bboard = 0;
     piece k;
-    k.position = 0x0000000010000000;
+    piece pawn;
+    k.position = 0x8000000000000000;
     k.type = KING;
     k.color = WHITE;
-    board = board | k.position;
-    wboard = board | k.position;
 
-    int *moveCount;
-    *moveCount = 0;
-    INT *moves = generateMoves(&k, board, wboard, bboard, moveCount);
+    board = board | k.position;
+    wboard = k.position;
+    bboard = 0;
+
+    int moveCount = 0;
+    INT *moves = generateMoves(&k, board, wboard, bboard, &moveCount);
 
     INT m = 0;
 
-    for(int i = 0; i < 8; i++){
+    for(int i = 0; i < moveCount; i++){
+        printf("%llx\n", moves[i]);
         m = m | moves[i];
     }
 
-    printf("%lx\n", m);
+    //Linux version
+    //printf("%lx\n", m);
+    //Mac version
+    printf("%llx\n", m);
 }

@@ -22,14 +22,14 @@ void setBoards(){
 
     board = whitePieces | blackPieces;
 
-    rank1 = 0xFF00000000000000;
-    rank2 = 0x00FF000000000000;
-    rank3 = 0x0000FF0000000000;
-    rank4 = 0x000000FF00000000;
-    rank5 = 0x00000000FF000000;
-    rank6 = 0x0000000000FF0000;
-    rank7 = 0x000000000000FF00;
-    rank8 = 0x00000000000000FF;
+    rank8 = 0xFF00000000000000;
+    rank7 = 0x00FF000000000000;
+    rank6 = 0x0000FF0000000000;
+    rank5 = 0x000000FF00000000;
+    rank4 = 0x00000000FF000000;
+    rank3 = 0x0000000000FF0000;
+    rank2 = 0x000000000000FF00;
+    rank1 = 0x00000000000000FF;
 
     afile = 0x8080808080808080;
     bfile = 0x4040404040404040;
