@@ -86,7 +86,7 @@ INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
     */
     *moveCount = i;
     //printf("i: %d, moveCount: %d\n", i, *moveCount);
-    if(!*moveCount){
+    if(*moveCount != 0){
         INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
         for(int j = 0; j < i; j++){
             if(moves[j] != 0){
@@ -156,7 +156,7 @@ INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
 }
 
 INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
-    int *moves = (INT*)malloc(PAWN_MAX_MOVES * sizeof(INT));
+    INT *moves = (INT*)malloc(PAWN_MAX_MOVES * sizeof(INT));
     INT pos = p->position;
     int i = 0;
     INT npos = 0;
@@ -166,32 +166,37 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
             return 0;
         }
         //generate N move
-        if(!((pos << 8)) & board){
+        if(!((pos << 8) & board)){
+            printf("N move\n");
             npos = pos << 8;
             i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
        
         
         //generate 2N move
-        if(pos & rank2 && !((pos << 16)) & board){
+        if((pos & rank2) && !((pos << 16) & board) && !((pos << 8) & board)){
+            printf("2N move\n");
             npos = pos << 16;
             i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
         
         //generate NW move
         if((pos << 9) & bboard){
+            printf("NW move\n");
             npos = pos << 9;
             i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
 
         //generate NE move
         if((pos << 7) & bboard){
+            printf("NE move\n");
             npos = pos << 7;
             i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
 
         //generate en passante moves
         if(enPassantePiece && enPassantePiece->color == BLACK){
+            printf("En passante move\n");
             //NW move
             if(enPassantePiece->position & (pos << 1)){
                 npos = pos << 9;
@@ -218,7 +223,7 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         
         //generate 2S move
-        if(pos & rank7 && !((pos >> 16) & board)){
+        if(pos & rank7 && !((pos >> 16) & board)&& !((pos >> 8) & board)){
             npos = pos >> 16;
             i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
@@ -251,19 +256,22 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         }
     }
     *moveCount = i;
-    if(!*moveCount){
+    printf("Move count: %d\n", *moveCount);
+    if(*moveCount != 0){
         INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
         for(int j = 0; j < i; j++){
+            printf("j: %d, i: %d\n", j, i);
             if(moves[j] != 0){
-                //printf("%lx\n", moves[j]);
+                printf("pushing %lx to new array\n", moves[j]);
                 possibleMoves[j] = moves[j];
             }else{
+                printf("Move is zero\n");
                 *moveCount = *moveCount - 1;
-            }
+            }  
+        }
             free(moves);
 
             return possibleMoves;
-        }
     }else{
         free(moves);
         return 0;
@@ -273,16 +281,17 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
 int calculatePawnMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount){
     //algorithm for white pawn
     if(p->color == WHITE){
-        INT nboard = (board ^ p->position) | npos;      //create the new board with the new position
-        INT nwboard = nboard ^ bboard;                  //create new white board
+        INT nboard = (board & ~p->position) | npos;      //create the new board with the new position
+        INT nwboard = (wboard & ~p->position) | npos;    //create new white board
         //if the new move doesn't put the king in check, add it to the possible moves
         if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
+            printf("moves[%d]: %lx\n", i, npos);
             moves[i] = npos;
             i++;
         }
     }else{
-        INT nboard = (board ^ p->position) | npos;      //create the new board with the new position
-        INT nbboard = nboard ^ wboard;                  //create new black board
+        INT nboard = (board & ~p->position) | npos;      //create the new board with the new position
+        INT nbboard = (bboard & ~p->position) | npos;    //create new black board
         //if the new move doesn't put the king in check, add it to the possible moves
         if(!isKingInCheck(nboard, nbboard, bboard, BLACK)){
             moves[i] = npos;
