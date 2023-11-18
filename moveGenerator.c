@@ -150,7 +150,117 @@ INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
 }
 
 INT* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
-    return 0;
+    INT *moves = (INT*)malloc(KNIGHT_MAX_MOVES * sizeof(INT));
+    INT pos = p->position;
+    int i = 0;
+    INT npos = 0;
+    //generate N moves
+    if(!(pos & (rank8 | rank7))){
+        //generate NNW moves
+        if(!(pos & afile)){
+            npos = pos << 17;
+            i = calculateKnightMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+
+        //generate NNE moves
+        if(!(pos & hfile)){
+            npos = pos << 15;
+            i = calculateKnightMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+    }
+
+    //generate S moves
+    if(!(pos & (rank1 | rank2))){
+        //generate SSW moves
+        if(!(pos & afile)){
+            npos = pos >> 15;
+            i = calculateKnightMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+
+        //generate SSE moves
+        if(!(pos & hfile)){
+            npos = pos >> 17;
+            i = calculateKnightMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+    }
+
+    //generate W moves
+    if(!(pos & (afile | bfile))){
+        //generate NWW moves
+        if(!(pos & rank8)){
+            npos = pos << 10;
+            i = calculateKnightMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+
+        //generate SWW moves
+        if(!(pos & rank1)){
+            npos = pos >> 6;
+            i = calculateKnightMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+    }
+
+    //generate E moves
+    if(!(pos & (gfile | hfile))){
+        //generate NEE moves
+        if(!(pos & rank8)){
+            npos = pos << 6;
+            i = calculateKnightMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+        //generate SEE moves
+        if(!(pos & rank1)){
+            npos = pos >> 10;
+            i = calculateKnightMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+    }
+    *moveCount = i;
+    int balancer = 0;
+    printf("Move count: %d\n", *moveCount);
+    if(*moveCount != 0){
+        INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
+        for(int j = 0; j < i; j++){
+            printf("j: %d, i: %d\n", j, i);
+            if(moves[j] != 0){
+                printf("pushing %lx to new array\n", moves[j]);
+                possibleMoves[j - balancer] = moves[j];
+            }else{
+                printf("Move is zero\n");
+                balancer++;
+                *moveCount = *moveCount - 1;
+            }  
+        }
+            free(moves);
+
+            return possibleMoves;
+    }else{
+        free(moves);
+        return 0;
+    }
+}
+
+INT* calculateKnightMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount){
+    if(p->color == WHITE){
+        //white knight
+        if(!(npos & wboard)){                   //check for blockers
+            INT nboard = (board & ~p->position) | npos;  //create the new board with new position
+            INT nwboard = (wboard & ~p->position) | npos;//create the new white board with new position
+            //check check (haha)
+            if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
+                moves[i] = npos;
+                i++;
+            }
+        }
+    }else{
+        if(!(npos & bboard)){
+            INT nboard = (board & ~p->position) | npos;          //create the new board with new position
+            INT nbboard = (bboard & ~p->position) | npos;        //create the new black board with new position
+             //check check (haha)
+            if(!isKingInCheck(nboard, nbboard, bboard, BLACK)){
+                moves[i] = npos;
+                i++;
+            }
+        }
+    }
+    return i;
 }
 
 INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
