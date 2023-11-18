@@ -17,22 +17,36 @@ void testKingMoves(){
     k.type = KING;
     k.color = WHITE;
 
-    board = board | k.position;
-    wboard = k.position;
-    bboard = 0;
-
-    int moveCount = 0;
-    INT *moves = generateMoves(&k, board, wboard, bboard, &moveCount);
-
-    INT m = 0;
-
-    for(int i = 0; i < moveCount; i++){
-        printf("%llx\n", moves[i]);
-        m = m | moves[i];
+    for(int i = 0; i < 64; i++){
+        if(i) k.position = k.position >> 1;
+        board = k.position;
+        wboard = k.position;
+        int moveCount = 0;
+        INT *moves = generateMoves(&k, board, wboard, bboard, &moveCount);
+        INT m = 0;
+        for(int i = 0; i < moveCount; i++){
+            m = m | moves[i];
+        }
+        free(moves);
+        printf("%llx\n", m);
     }
+
+    // board = board | k.position;
+    // wboard = k.position;
+    // bboard = 0;
+
+    // int moveCount = 0;
+    // INT *moves = generateMoves(&k, board, wboard, bboard, &moveCount);
+
+    // INT m = 0;
+
+    // for(int i = 0; i < moveCount; i++){
+    //     printf("%llx\n", moves[i]);
+    //     m = m | moves[i];
+    // }
 
     //Linux version
     //printf("%lx\n", m);
     //Mac version
-    printf("%llx\n", m);
+    //printf("%llx\n", m);
 }
