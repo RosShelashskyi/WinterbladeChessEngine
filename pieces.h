@@ -38,5 +38,8 @@ piece *B_F_Pawn;
 piece *B_G_Pawn;
 piece *B_H_Pawn;
 
+//pointer to piece that can be taken by en passante
+piece *enPassantePiece;
+
 void setWhitePieces();
 void setBlackPieces();

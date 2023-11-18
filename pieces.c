@@ -82,6 +82,8 @@ void setWhitePieces(){
     W_H_Pawn->position = 0x0000000000000100;
     W_H_Pawn->type = PAWN;
     W_H_Pawn->value = 1;
+
+    enPassantePiece = 0;
 }
 
 //setting the black pieces
