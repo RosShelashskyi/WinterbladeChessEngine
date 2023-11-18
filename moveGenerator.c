@@ -130,29 +130,6 @@ int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT
         }
     }
     return i;
-
-    // if((p->color == WHITE && !(npos & wboard)) || p->color == BLACK && !(npos & bboard)){  
-    //     INT nboard = (board ^ p->position) | npos;          //create the new board with new position
-    //     if(p->color == WHITE){
-    //         //algorithm for white king                      
-    //         INT nwboard = nboard ^ bboard;          //create the new white board with new position
-    //         //if the new move doesn't put the king in check, add it to the possible moves
-    //         if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
-    //             moves[i] = npos;
-    //             i++;
-    //             return i;
-    //         }
-    //     }else{
-    //         //algorithm for black king
-    //         INT nbboard = nboard ^ wboard;
-    //         //if the new move doesn't put the king in check, add it to the possible moves
-    //         if(!isKingInCheck(nboard, wboard, nbboard, BLACK)){
-    //             moves[i] = npos;
-    //             return i;
-    //         }
-    //     }
-    // }
-    // return i;
 }
 
 
@@ -173,7 +150,123 @@ INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
 }
 
 INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
+    int *moves = (INT*)malloc(PAWN_MAX_MOVES * sizeof(INT));
+    INT pos = p->position;
+    int i = 0;
+    INT npos = 0;
+    if(p->color == WHITE){
+        if(pos & rank8){
+            *moveCount = 0;
+            return 0;
+        }
+        //generate N move
+        if(!((pos << 8)) & board){
+            npos = pos << 8;
+            i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+       
+        
+        //generate 2N move
+        if(pos & rank2 && !((pos << 16)) & board){
+            npos = pos << 16;
+            i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+        
+        //generate NW move
+        if((pos << 9) & bboard){
+            npos = pos << 9;
+            i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+
+        //generate NE move
+        if((pos << 7) & bboard){
+            npos = pos << 7;
+            i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+
+        //generate en passante moves
+        if(enPassantePiece && enPassantePiece->color == BLACK){
+            //NW move
+            if(enPassantePiece->position & (pos << 1)){
+                npos = pos << 9;
+                i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);  
+            }
+            
+
+            //NE move
+            if(enPassantePiece->position & (pos >> 1)){
+                npos = pos << 7;
+                i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+            }
+            
+        }
+    }else{
+        if(pos & rank1){
+            *moveCount = 0;
+            return 0;
+        }
+
+        //generate S move
+        if(!((pos >> 8) & board))
+        npos = pos >> 8;
+        i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        
+        //generate 2S move
+        if(pos & rank7 && !((pos >> 16) & board)){
+            npos = pos >> 16;
+            i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+       
+        //generate SW move
+        if((pos >> 7) & wboard){
+            npos = pos >> 7;
+            i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+
+        //generate SE move
+        if((pos >> 9) & wboard){
+            npos = pos >> 9;
+            i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        }
+
+        //generate en passante moves
+        if(enPassantePiece && enPassantePiece->color == WHITE){
+            //SW move
+            if(enPassantePiece->position & (pos << 1)){
+                npos = pos >> 7;
+                i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+            }
+
+            //SE move
+            if(enPassantePiece->position & (pos >> 1)){
+                npos = pos >> 9;
+                i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+            }
+        }
+    }
     return 0;
+}
+
+int calculatePawnMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount){
+    //algorithm for white pawn
+    if(p->color == WHITE){
+        INT nboard = (board ^ p->position) | npos;      //create the new board with the new position
+        INT nwboard = nboard ^ bboard;                  //create new white board
+        //if the new move doesn't put the king in check, add it to the possible moves
+        if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
+            moves[i] = npos;
+            i++;
+        }
+    }else{
+        INT nboard = (board ^ p->position) | npos;      //create the new board with the new position
+        INT nbboard = nboard ^ wboard;                  //create new black board
+        //if the new move doesn't put the king in check, add it to the possible moves
+        if(!isKingInCheck(nboard, nbboard, bboard, BLACK)){
+            moves[i] = npos;
+            i++;
+        }
+    }
+    return i;
 }
 
 int isKingInCheck(INT board, INT wboard, INT bboard, INT color){
