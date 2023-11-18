@@ -250,7 +250,24 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
             }
         }
     }
-    return 0;
+    *moveCount = i;
+    if(!*moveCount){
+        INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
+        for(int j = 0; j < i; j++){
+            if(moves[j] != 0){
+                //printf("%lx\n", moves[j]);
+                possibleMoves[j] = moves[j];
+            }else{
+                *moveCount = *moveCount - 1;
+            }
+            free(moves);
+
+            return possibleMoves;
+        }
+    }else{
+        free(moves);
+        return 0;
+    }
 }
 
 int calculatePawnMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount){
