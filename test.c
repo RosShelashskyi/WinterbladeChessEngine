@@ -28,7 +28,7 @@ void testKingMoves(){
             m = m | moves[i];
         }
         free(moves);
-        printf("%llx\n", m);
+        printf("%lx\n", m);
     }
 
     // board = board | k.position;

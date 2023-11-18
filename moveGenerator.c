@@ -84,18 +84,20 @@ INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
     So instead, let's create a new array of size i + 1 and put all the values in it.
     That way we're only using as much memory as we need. 
     */
-    *moveCount = i + 1;
+    *moveCount = i;
+    //printf("i: %d, moveCount: %d\n", i, *moveCount);
 
     INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
-    for(int j = 0; j < i + 1; j++){
+    for(int j = 0; j < i; j++){
         if(moves[j] != 0){
+            //printf("%lx\n", moves[j]);
             possibleMoves[j] = moves[j];
         }else{
             *moveCount = *moveCount - 1;
         }
     }
 
-    printf("%d\n", *moveCount);
+    //printf("%d\n", *moveCount);
 
     free(moves);
 
@@ -112,6 +114,7 @@ int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT
             //if the new move doesn't put the king in check, add it to the possible moves
             if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
                 moves[i] = npos;
+                //printf("Pushing move %lx to %d\n", npos, i);
                 i++;
             }
         }
