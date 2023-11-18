@@ -50,3 +50,36 @@ void testKingMoves(){
     //Mac version
     //printf("%llx\n", m);
 }
+
+void testPawnMoves(){
+    setBoards();
+    INT board = 0;
+    INT wboard = 0;
+    INT bboard = 0;
+    piece pawn;
+    pawn.position = 0x0000000020000000;
+    pawn.type = PAWN;
+    pawn.color = BLACK;
+
+    piece wpawn;
+    wpawn.position = pawn.position << 1; 
+    wpawn.type = PAWN;
+    wpawn.color = WHITE;
+
+    board  = pawn.position | wpawn.position;
+    wboard = wpawn.position;
+    bboard = pawn.position;
+
+    enPassantePiece = &wpawn;
+
+    int moveCount = 0;
+    INT *moves = generateMoves(&pawn, board, wboard, bboard, &moveCount);
+    INT m = 0;
+    printf("%d\n", moveCount);
+    for(int i = 0; i < moveCount; i++){
+        printf("%lx\n", moves[i]);    
+        m = m | moves[i];
+    }
+    free(moves);
+    printf("%lx\n", m);
+}
