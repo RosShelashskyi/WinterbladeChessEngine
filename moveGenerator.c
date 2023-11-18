@@ -86,22 +86,28 @@ INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
     */
     *moveCount = i;
     //printf("i: %d, moveCount: %d\n", i, *moveCount);
-
-    INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
-    for(int j = 0; j < i; j++){
-        if(moves[j] != 0){
-            //printf("%lx\n", moves[j]);
-            possibleMoves[j] = moves[j];
-        }else{
-            *moveCount = *moveCount - 1;
+    if(!*moveCount){
+        INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
+        for(int j = 0; j < i; j++){
+            if(moves[j] != 0){
+                //printf("%lx\n", moves[j]);
+                possibleMoves[j] = moves[j];
+            }else{
+                *moveCount = *moveCount - 1;
+            }
         }
+        //printf("%d\n", *moveCount);
+
+        free(moves);
+
+        return possibleMoves;
+    }else{
+        free(moves);
+        return 0;
     }
+    
 
-    //printf("%d\n", *moveCount);
-
-    free(moves);
-
-    return possibleMoves;
+    
 }
 
 int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount){
