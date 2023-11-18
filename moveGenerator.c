@@ -85,15 +85,17 @@ INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
     That way we're only using as much memory as we need. 
     */
     *moveCount = i;
+    int balancer = 0;
     //printf("i: %d, moveCount: %d\n", i, *moveCount);
     if(*moveCount != 0){
         INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
         for(int j = 0; j < i; j++){
             if(moves[j] != 0){
                 //printf("%lx\n", moves[j]);
-                possibleMoves[j] = moves[j];
+                possibleMoves[j - balancer] = moves[j];
             }else{
                 *moveCount = *moveCount - 1;
+                balancer++;
             }
         }
         //printf("%d\n", *moveCount);
@@ -115,8 +117,8 @@ int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT
     if(p->color == WHITE){
         //algorithm for white king
         if(!(npos & wboard)){                           //check for blockers
-            INT nboard = (board ^ p->position) | npos;  //create the new board with new position
-            INT nwboard = nboard ^ bboard;              //create the new white board with new position
+            INT nboard = (board & ~p->position) | npos;  //create the new board with new position
+            INT nwboard = (wboard & ~p->position) | npos;//create the new white board with new position
             //if the new move doesn't put the king in check, add it to the possible moves
             if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
                 moves[i] = npos;
@@ -126,8 +128,8 @@ int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT
         }
     }else{
         if(!(npos & bboard)){
-            INT nboard = (board ^ p->position) | npos;          //create the new board with new position
-            INT nbboard = nboard ^ wboard;                      //create the new black board with new position
+            INT nboard = (board & ~p->position) | npos;          //create the new board with new position
+            INT nbboard = (bboard & ~p->position) | npos;        //create the new black board with new position
             //if the new move doesn't put the king in check, add it to the possible moves
             if(!isKingInCheck(nboard, wboard, nbboard, BLACK)){
                 moves[i] = npos;
