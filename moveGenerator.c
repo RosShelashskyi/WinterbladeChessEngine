@@ -256,6 +256,7 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         }
     }
     *moveCount = i;
+    int balancer = 0;
     printf("Move count: %d\n", *moveCount);
     if(*moveCount != 0){
         INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
@@ -263,9 +264,10 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
             printf("j: %d, i: %d\n", j, i);
             if(moves[j] != 0){
                 printf("pushing %lx to new array\n", moves[j]);
-                possibleMoves[j] = moves[j];
+                possibleMoves[j - balancer] = moves[j];
             }else{
                 printf("Move is zero\n");
+                balancer++;
                 *moveCount = *moveCount - 1;
             }  
         }
@@ -294,6 +296,7 @@ int calculatePawnMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT
         INT nbboard = (bboard & ~p->position) | npos;    //create new black board
         //if the new move doesn't put the king in check, add it to the possible moves
         if(!isKingInCheck(nboard, nbboard, bboard, BLACK)){
+            printf("moves[%d]: %lx\n", i, npos);
             moves[i] = npos;
             i++;
         }
