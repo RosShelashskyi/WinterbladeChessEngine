@@ -22,3 +22,5 @@ int isKingInCheck(INT board, INT wboard, INT bboard, INT color);
 int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount);
 
 int calculatePawnMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount);
+
+int calculateKnightMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount);

@@ -237,7 +237,7 @@ INT* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
     }
 }
 
-INT* calculateKnightMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount){
+int calculateKnightMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount){
     if(p->color == WHITE){
         //white knight
         if(!(npos & wboard)){                   //check for blockers

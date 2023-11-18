@@ -83,3 +83,28 @@ void testPawnMoves(){
     free(moves);
     printf("%lx\n", m);
 }
+
+void testKnightMoves(){
+    setBoards();
+    INT board = 0;
+    INT wboard = 0;
+    int bboard = 0;
+    piece knight;
+    knight.position = 0x0000000008000000;
+    knight.color = WHITE;
+    knight.type = KNIGHT;
+
+    board = knight.position;
+    wboard = knight.position;
+
+    int moveCount = 0;
+    INT *moves = generateMoves(&knight, board, wboard, bboard, &moveCount);
+    INT m = 0;
+    printf("Move count: %d\n", moveCount);
+    for(int i = 0; i < moveCount; i++){
+        printf("move[%d]: %lx\n", i, moves[i]);
+        m = m | moves[i];
+    }
+    free(moves);
+    printf("%lx\n", m);
+}
