@@ -146,7 +146,97 @@ INT* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCo
 }
 
 INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
-    return 0;
+    INT *moves = (INT*)malloc(ROOK_MAX_MOVES * sizeof(INT));
+    INT pos = p->position;
+    int i = 0;
+    INT npos = 0;
+    int blocker = 0;
+    //generate N moves
+    int j = 8;
+    while(pos << j && !blocker){
+        npos = pos << j;
+        i = calculateRookMove(p, board, wboard, bboard, npos, moves, i, moveCount, &blocker);
+        j += 8;
+    }
+
+    //generate S moves
+    j = 8;
+    while(pos >> j && !blocker){
+        npos = pos >> j;
+        i = calculateRookMove(p, board, wboard, bboard, npos, moves, i, moveCount, &blocker);
+        j += 8;
+    }
+
+    //generate W moves
+    j = 1;
+    while(!((pos << j) & hfile) && !blocker){
+        npos = pos << j;
+        i = calculateRookMove(p, board, wboard, bboard, npos, moves, i, moveCount, &blocker);
+        j++;
+    }
+
+    //generate E moves
+    j = 1;
+    while(!((pos >> j) & afile) && !blocker){
+        npos = pos >> j;
+        i = calculateRookMove(p, board, wboard, bboard, npos, moves, i, moveCount, &blocker);
+        j++;
+    }
+
+        *moveCount = i;
+    int balancer = 0;
+    //printf("Move count: %d\n", *moveCount);
+    if(*moveCount != 0){
+        INT *possibleMoves = (INT*)malloc((*moveCount) * sizeof(INT));
+        for(int j = 0; j < i; j++){
+            //printf("j: %d, i: %d\n", j, i);
+            if(moves[j] != 0){
+                //printf("pushing %lx to new array\n", moves[j]);
+                possibleMoves[j - balancer] = moves[j];
+            }else{
+                //printf("Move is zero\n");
+                balancer++;
+                *moveCount = *moveCount - 1;
+            }  
+        }
+            free(moves);
+
+            return possibleMoves;
+    }else{
+        free(moves);
+        return 0;
+    }
+}
+
+int calculateRookMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount, int *blocker){
+    if(p->color == WHITE){
+        if(!(npos & wboard)){
+            INT nboard = (board & ~p->position) | npos;  //create the new board with new position
+            INT nwboard = (wboard & ~p->position) | npos; //create the new white board with new position
+            if(npos & bboard) *blocker = 1;
+            if(!isKingInCheck(nboard, nwboard, bboard, WHITE)){
+                moves[i] = npos;
+                //printf("Pushing move %lx to %d\n", npos, i);
+                i++;
+            }
+        }else{
+            *blocker = 1;
+        }
+    }else{
+        if(!(npos & bboard)){
+            INT nboard = (board & ~p->position) | npos;          //create the new board with new position
+            INT nbboard = (bboard & ~p->position) | npos;        //create the new black board with new position
+            if(npos & wboard) *blocker = 1;
+            if(!isKingInCheck(nboard, nbboard, bboard, BLACK)){
+                moves[i] = npos;
+                //printf("Pushing move %lx to %d\n", npos, i);
+                i++;
+            }
+        }else{
+            *blocker = 1;
+        }
+    }
+    return i;
 }
 
 INT* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
