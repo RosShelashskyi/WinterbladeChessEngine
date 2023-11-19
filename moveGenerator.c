@@ -159,6 +159,7 @@ INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         j += 8;
     }
 
+    blocker = 0;
     //generate S moves
     j = 8;
     while(pos >> j && !blocker){
@@ -167,6 +168,7 @@ INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         j += 8;
     }
 
+    blocker = 0;
     //generate W moves
     j = 1;
     while(!((pos << j) & hfile) && !blocker){
@@ -175,6 +177,7 @@ INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         j++;
     }
 
+    blocker = 0;
     //generate E moves
     j = 1;
     while(!((pos >> j) & afile) && !blocker){
@@ -183,7 +186,7 @@ INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         j++;
     }
 
-        *moveCount = i;
+    *moveCount = i;
     int balancer = 0;
     //printf("Move count: %d\n", *moveCount);
     if(*moveCount != 0){
