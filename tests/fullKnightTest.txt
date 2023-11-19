@@ -1,0 +1,256 @@
+Move count: 2
+20400000000000
+
+
+Move count: 3
+10a00000000000
+
+
+Move count: 4
+88500000000000
+
+
+Move count: 4
+44280000000000
+
+
+Move count: 4
+22140000000000
+
+
+Move count: 4
+110a0000000000
+
+
+Move count: 3
+8050000000000
+
+
+Move count: 2
+4020000000000
+
+
+Move count: 3
+2000204000000000
+
+
+Move count: 4
+100010a000000000
+
+
+Move count: 6
+8800885000000000
+
+
+Move count: 6
+4400442800000000
+
+
+Move count: 6
+2200221400000000
+
+
+Move count: 6
+1100110a00000000
+
+
+Move count: 4
+800080500000000
+
+
+Move count: 3
+400040200000000
+
+
+Move count: 4
+4020002040000000
+
+
+Move count: 6
+a0100010a0000000
+
+
+Move count: 8
+5088008850000000
+
+
+Move count: 8
+2844004428000000
+
+
+Move count: 8
+1422002214000000
+
+
+Move count: 8
+a1100110a000000
+
+
+Move count: 6
+508000805000000
+
+
+Move count: 4
+204000402000000
+
+
+Move count: 4
+40200020400000
+
+
+Move count: 6
+a0100010a00000
+
+
+Move count: 8
+50880088500000
+
+
+Move count: 8
+28440044280000
+
+
+Move count: 8
+14220022140000
+
+
+Move count: 8
+a1100110a0000
+
+
+Move count: 6
+5080008050000
+
+
+Move count: 4
+2040004020000
+
+
+Move count: 4
+402000204000
+
+
+Move count: 6
+a0100010a000
+
+
+Move count: 8
+508800885000
+
+
+Move count: 8
+284400442800
+
+
+Move count: 8
+142200221400
+
+
+Move count: 8
+a1100110a00
+
+
+Move count: 6
+50800080500
+
+
+Move count: 4
+20400040200
+
+
+Move count: 4
+4020002040
+
+
+Move count: 6
+a0100010a0
+
+
+Move count: 8
+5088008850
+
+
+Move count: 8
+2844004428
+
+
+Move count: 8
+1422002214
+
+
+Move count: 8
+a1100110a
+
+
+Move count: 6
+508000805
+
+
+Move count: 4
+204000402
+
+
+Move count: 3
+40200020
+
+
+Move count: 4
+a0100010
+
+
+Move count: 6
+50880088
+
+
+Move count: 6
+28440044
+
+
+Move count: 6
+14220022
+
+
+Move count: 6
+a110011
+
+
+Move count: 4
+5080008
+
+
+Move count: 3
+2040004
+
+
+Move count: 2
+402000
+
+
+Move count: 3
+a01000
+
+
+Move count: 4
+508800
+
+
+Move count: 4
+284400
+
+
+Move count: 4
+142200
+
+
+Move count: 4
+a1100
+
+
+Move count: 3
+50800
+
+
+Move count: 2
+20400
+
+
