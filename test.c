@@ -131,12 +131,35 @@ void testRookMoves(){
     INT wboard = 0;
     INT bboard = 0;
     piece rook;
-    rook.position = 0x0000000000000001;
+    rook.position = 0x8000000000000000;
     rook.type = ROOK;
     rook.color = WHITE;
 
-    board = rook.position;
+    piece pawn;
+    pawn.position = 0x0000800000000000;
+    pawn.type = PAWN;
+    pawn.color = BLACK;
+
+    board = rook.position | pawn.position;
     wboard = rook.position;
+    bboard = pawn.position;
+
+    
+    // for(int i = 0; i < 64; i++){
+    //     if(i) rook.position = rook.position >> 1;
+    //     board = rook.position;
+    //     wboard = rook.position;
+    //     int moveCount = 0;
+    //     INT *moves = generateMoves(&rook, board, wboard, bboard, &moveCount);
+    //     INT m = 0;
+    //     printf("Move count: %d\n", moveCount);
+    //     for(int i = 0; i < moveCount; i++){
+    //         //printf("move[%d]: %lx\n", i, moves[i]);
+    //         m = m | moves[i];
+    //     }
+    //     free(moves);
+    //     printf("%lx\n\n\n", m);
+    // }
 
     int moveCount = 0;
     INT *moves = generateMoves(&rook, board, wboard, bboard, &moveCount);

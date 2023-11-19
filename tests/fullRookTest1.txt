@@ -1,0 +1,264 @@
+Move count: 14
+7f80808080808080
+
+
+Move count: 14
+bf40404040404040
+
+
+Move count: 14
+df20202020202020
+
+
+Move count: 14
+ef10101010101010
+
+
+Move count: 14
+f708080808080808
+
+
+Move count: 14
+fb04040404040404
+
+
+Move count: 14
+fd02020202020202
+
+
+Move count: 14
+fe01010101010101
+
+
+Move count: 14
+807f808080808080
+
+
+Move count: 14
+40bf404040404040
+
+
+Move count: 14
+20df202020202020
+
+
+Move count: 14
+10ef101010101010
+
+
+Move count: 14
+8f7080808080808
+
+
+Move count: 14
+4fb040404040404
+
+
+Move count: 14
+2fd020202020202
+
+
+Move count: 14
+1fe010101010101
+
+
+Move count: 14
+80807f8080808080
+
+
+Move count: 14
+4040bf4040404040
+
+
+Move count: 14
+2020df2020202020
+
+
+Move count: 14
+1010ef1010101010
+
+
+Move count: 14
+808f70808080808
+
+
+Move count: 14
+404fb0404040404
+
+
+Move count: 14
+202fd0202020202
+
+
+Move count: 14
+101fe0101010101
+
+
+Move count: 14
+8080807f80808080
+
+
+Move count: 14
+404040bf40404040
+
+
+Move count: 14
+202020df20202020
+
+
+Move count: 14
+101010ef10101010
+
+
+Move count: 14
+80808f708080808
+
+00001000 
+00001000 
+00001000 
+11110111 
+00001000 
+00001000 
+00001000 
+00001000
+
+Move count: 14
+40404fb04040404
+
+
+Move count: 14
+20202fd02020202
+
+
+Move count: 14
+10101fe01010101
+
+
+Move count: 14
+808080807f808080
+
+
+Move count: 14
+40404040bf404040
+
+
+Move count: 14
+20202020df202020
+
+
+Move count: 14
+10101010ef101010
+
+
+Move count: 14
+8080808f7080808
+
+
+Move count: 14
+4040404fb040404
+
+
+Move count: 14
+2020202fd020202
+
+
+Move count: 14
+1010101fe010101
+
+
+Move count: 14
+80808080807f8080
+
+
+Move count: 14
+4040404040bf4040
+
+
+Move count: 14
+2020202020df2020
+
+
+Move count: 14
+1010101010ef1010
+
+
+Move count: 14
+808080808f70808
+
+
+Move count: 14
+404040404fb0404
+
+
+Move count: 14
+202020202fd0202
+
+
+Move count: 14
+101010101fe0101
+
+
+Move count: 14
+8080808080807f80
+
+
+Move count: 14
+404040404040bf40
+
+
+Move count: 14
+202020202020df20
+
+
+Move count: 14
+101010101010ef10
+
+
+Move count: 14
+80808080808f708
+
+
+Move count: 14
+40404040404fb04
+
+
+Move count: 14
+20202020202fd02
+
+
+Move count: 14
+10101010101fe01
+
+
+Move count: 14
+808080808080807f
+
+
+Move count: 14
+40404040404040bf
+
+
+Move count: 14
+20202020202020df
+
+
+Move count: 14
+10101010101010ef
+
+
+Move count: 14
+8080808080808f7
+
+
+Move count: 14
+4040404040404fb
+
+
+Move count: 14
+2020202020202fd
+
+
+Move count: 14
+1010101010101fe
+
+
