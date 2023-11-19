@@ -8,7 +8,7 @@
 
 int main(){
     //setupGame();
-    testRookMoves();
+    testBishopMoves();
     return 0;
 }
 

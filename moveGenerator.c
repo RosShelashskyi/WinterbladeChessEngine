@@ -371,7 +371,7 @@ INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
     int j = 9;
     while(pos << j && !((pos << j) & hfile) && !blocker){
         npos = pos << j;
-        i = calculateBishopMove(p, board, wboard, bboard, npos, moves, i, moveCount, blocker);
+        i = calculateBishopMove(p, board, wboard, bboard, npos, moves, i, moveCount, &blocker);
         j += 9;
     }
     blocker = 0;
@@ -380,7 +380,7 @@ INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
     j = 7;
     while(pos << j && !((pos << j) & afile) && !blocker){
         npos = pos << j;
-        i = calculateBishopMove(p, board, wboard, bboard, npos, moves, i, moveCount, blocker);
+        i = calculateBishopMove(p, board, wboard, bboard, npos, moves, i, moveCount, &blocker);
         j += 7;
     }
     blocker = 0;
@@ -389,7 +389,7 @@ INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
     j = 7;
     while(pos >> j && !((pos >> j) & hfile) && !blocker){
         npos = pos >> j;
-        i = calculateBishopMove(p, board, wboard, bboard, npos, moves, i, moveCount, blocker);
+        i = calculateBishopMove(p, board, wboard, bboard, npos, moves, i, moveCount, &blocker);
         j += 7;
     }
     blocker = 0;
@@ -398,7 +398,7 @@ INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
     j = 9;
     while(pos >> j && !((pos >> j) & afile) && !blocker){
         npos = pos >> j;
-        i = calculateBishopMove(p, board, wboard, bboard, npos, moves, i, moveCount, blocker);
+        i = calculateBishopMove(p, board, wboard, bboard, npos, moves, i, moveCount, &blocker);
         j += 9;
     }
 
