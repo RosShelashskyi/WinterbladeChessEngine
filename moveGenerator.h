@@ -26,3 +26,5 @@ int calculatePawnMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT
 int calculateKnightMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount);
 
 int calculateRookMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount, int *blocker);
+
+int calculateBishopMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount, int *blocker);
