@@ -20,6 +20,8 @@ piece *W_F_Pawn;
 piece *W_G_Pawn;
 piece *W_H_Pawn;
 
+piece *whitePieces[16];
+
 //declaring pointer for black pieces
 piece *B_King;
 piece *B_Queen;
@@ -37,6 +39,8 @@ piece *B_E_Pawn;
 piece *B_F_Pawn;
 piece *B_G_Pawn;
 piece *B_H_Pawn;
+
+piece *blackPieces[16];
 
 //pointer to piece that can be taken by en passante
 piece *enPassantePiece;

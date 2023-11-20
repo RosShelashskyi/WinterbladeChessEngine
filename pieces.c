@@ -83,6 +83,23 @@ void setWhitePieces(){
     W_H_Pawn->type = PAWN;
     W_H_Pawn->value = 1;
 
+    whitePieces[0] = W_King;
+    whitePieces[1] = W_Queen;
+    whitePieces[2] = W_A_Rook;
+    whitePieces[3] = W_H_Rook;
+    whitePieces[4] = W_B_Knight;
+    whitePieces[5] = W_G_Knight;
+    whitePieces[6] = W_C_Bishop;
+    whitePieces[7] = W_F_Bishop;
+    whitePieces[8] = W_A_Pawn;
+    whitePieces[9] = W_B_Pawn;
+    whitePieces[10] = W_C_Pawn;
+    whitePieces[11] = W_D_Pawn;
+    whitePieces[12] = W_E_Pawn;
+    whitePieces[13] = W_F_Pawn;
+    whitePieces[14] = W_G_Pawn;
+    whitePieces[15] = W_H_Pawn;
+
     enPassantePiece = 0;
 }
 
@@ -167,4 +184,22 @@ void setBlackPieces(){
     B_H_Pawn->position = 0x0001000000000000;
     B_H_Pawn->type = PAWN;
     B_H_Pawn->value = 1;
+
+    blackPieces[0] = W_King;
+    blackPieces[1] = W_Queen;
+    blackPieces[2] = W_A_Rook;
+    blackPieces[3] = W_H_Rook;
+    blackPieces[4] = W_B_Knight;
+    blackPieces[5] = W_G_Knight;
+    blackPieces[6] = W_C_Bishop;
+    blackPieces[7] = W_F_Bishop;
+    blackPieces[8] = W_A_Pawn;
+    blackPieces[9] = W_B_Pawn;
+    blackPieces[10] = W_C_Pawn;
+    blackPieces[11] = W_D_Pawn;
+    blackPieces[12] = W_E_Pawn;
+    blackPieces[13] = W_F_Pawn;
+    blackPieces[14] = W_G_Pawn;
+    blackPieces[15] = W_H_Pawn;
+
 }
