@@ -180,26 +180,26 @@ void testBishopMoves(){
     INT wboard = 0;
     INT bboard = 0;
     piece bishop;
-    bishop.position = 0x0000000010000000;
+    bishop.position = 0x0000200000000000;
     bishop.type = BISHOP;
     bishop.color = WHITE;
 
-    // piece pawn;
-    // pawn.position = 0x0000800000000000;
-    // pawn.type = PAWN;
-    // pawn.color = BLACK;
+    piece pawn;
+    pawn.position = 0x0000001000000000;
+    pawn.type = PAWN;
+    pawn.color = BLACK;
 
-    board = bishop.position;
+    board = bishop.position | pawn.position;
     wboard = bishop.position;
-    bboard = 0;
+    bboard = pawn.position;
 
     
     // for(int i = 0; i < 64; i++){
-    //     if(i) rook.position = rook.position >> 1;
-    //     board = rook.position;
-    //     wboard = rook.position;
+    //     if(i) bishop.position = bishop.position >> 1;
+    //     board = bishop.position;
+    //     wboard = bishop.position;
     //     int moveCount = 0;
-    //     INT *moves = generateMoves(&rook, board, wboard, bboard, &moveCount);
+    //     INT *moves = generateMoves(&bishop, board, wboard, bboard, &moveCount);
     //     INT m = 0;
     //     printf("Move count: %d\n", moveCount);
     //     for(int i = 0; i < moveCount; i++){
@@ -207,7 +207,7 @@ void testBishopMoves(){
     //         m = m | moves[i];
     //     }
     //     free(moves);
-    //     printf("%lx\n\n\n", m);
+    //     printf("%lx\n\n", m);
     // }
 
     int moveCount = 0;
