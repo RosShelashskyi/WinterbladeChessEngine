@@ -140,7 +140,6 @@ int calculateKingMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT
     return i;
 }
 
-
 INT* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
     INT *moves = (INT*)malloc(QUEEN_MAX_MOVES * sizeof(INT));
     INT pos = p->position;
