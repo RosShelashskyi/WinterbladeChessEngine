@@ -16,11 +16,11 @@ void setBoards(){
     BBishops = 0x2400000000000000;
     BPawns = 0x00FF000000000000;
 
-    whitePieces = WKing | WQueens | WRooks | WKnights | WBishops | WPawns;
+    whiteBoard = WKing | WQueens | WRooks | WKnights | WBishops | WPawns;
 
-    blackPieces = BKing | BQueens | BRooks | BKnights | BBishops | BPawns;
+    blackBoard = BKing | BQueens | BRooks | BKnights | BBishops | BPawns;
 
-    board = whitePieces | blackPieces;
+    board = whiteBoard | blackBoard;
 
     rank8 = 0xFF00000000000000;
     rank7 = 0x00FF000000000000;

@@ -6,8 +6,8 @@
 INT board;
 
 //boards for white and black pieces
-INT blackPieces;
-INT whitePieces;
+INT blackBoard;
+INT whiteBoard;
 
 //boards for every piece type and color
 INT WKing;
