@@ -579,7 +579,7 @@ int calculateMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *mo
             INT nboard = (board & ~p->position) | npos;  //create the new board with new position
             INT nwboard = (wboard & ~p->position) | npos;//create the new white board with new position
             //if the new move doesn't put the king in check, add it to the possible moves
-            if(!lookForCheckFlag || !isKingInCheck(nboard, nwboard, bboard, WHITE)){
+            if(!lookForCheckFlag || !isKingInCheck(p, npos, nboard, nwboard, bboard, WHITE)){
                 moves[i] = npos;
                 //printf("Pushing move %lx to %d\n", npos, i);
                 i++;
@@ -590,7 +590,7 @@ int calculateMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *mo
             INT nboard = (board & ~p->position) | npos;          //create the new board with new position
             INT nbboard = (bboard & ~p->position) | npos;        //create the new black board with new position
             //if the new move doesn't put the king in check, add it to the possible moves
-            if(!lookForCheckFlag || !isKingInCheck(nboard, wboard, nbboard, BLACK)){
+            if(!lookForCheckFlag || !isKingInCheck(p, npos, nboard, wboard, nbboard, BLACK)){
                 moves[i] = npos;
                 i++;
             }
@@ -606,7 +606,7 @@ int calculateRayMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT 
             INT nboard = (board & ~p->position) | npos;  //create the new board with new position
             INT nwboard = (wboard & ~p->position) | npos; //create the new white board with new position
             if(npos & bboard) *blocker = 1;
-            if(!lookForCheckFlag || !isKingInCheck(nboard, nwboard, bboard, WHITE)){
+            if(!lookForCheckFlag || !isKingInCheck(p, npos, nboard, nwboard, bboard, WHITE)){
                 moves[i] = npos;
                 //printf("Pushing move %lx to %d\n", npos, i);
                 i++;
@@ -619,7 +619,7 @@ int calculateRayMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT 
             INT nboard = (board & ~p->position) | npos;          //create the new board with new position
             INT nbboard = (bboard & ~p->position) | npos;        //create the new black board with new position
             if(npos & wboard) *blocker = 1;
-            if(!lookForCheckFlag || !isKingInCheck(nboard, nbboard, bboard, BLACK)){
+            if(!lookForCheckFlag || !isKingInCheck(p, npos, nboard, nbboard, bboard, BLACK)){
                 moves[i] = npos;
                 //printf("Pushing move %lx to %d\n", npos, i);
                 i++;
@@ -632,6 +632,22 @@ int calculateRayMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT 
 }
 
 
-int isKingInCheck(INT board, INT wboard, INT bboard, INT color){
+int isKingInCheck(piece *p, INT npos, INT board, INT wboard, INT bboard, INT color){
+    INT kingPos = 0;
+    if(color == WHITE){
+        if(p->type == KING){
+            kingPos = npos;
+        }else{
+            kingPos = W_King->position;
+        }
+    }else{
+        if(color == WHITE){
+            if(p->type == KING){
+                kingPos = npos;
+            }else{
+                kingPos = B_King->position;
+            }
+        }
+    }
     return 0;
 }

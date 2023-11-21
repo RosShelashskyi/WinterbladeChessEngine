@@ -17,7 +17,7 @@ INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
 
 INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);
 
-int isKingInCheck(INT board, INT wboard, INT bboard, INT color);
+int isKingInCheck(piece *p, INT npos, INT board, INT wboard, INT bboard, INT color);
 
 int calculateMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount);
 
