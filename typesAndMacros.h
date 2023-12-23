@@ -20,10 +20,10 @@
 #define PAWN_MAX_MOVES 4
 #define MAX_MOVES 30
 
-//defining a simple unsigned 64-bit integer type
+//unsigned 64-bit integer type
 typedef uint64_t INT;
 
-//defining a struct type to represent the pieces
+//struct type to represent the pieces
 typedef struct Piece{
     INT position;
     int color;
