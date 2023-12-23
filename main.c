@@ -8,7 +8,7 @@
 
 int main(){
     //setupGame();
-    testQueenMoves();
+    testKingMoves();
     return 0;
 }
 

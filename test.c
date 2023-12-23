@@ -28,7 +28,7 @@ void testKingMoves(){
             m = m | moves[i];
         }
         free(moves);
-        printf("%lx\n", m);
+        printf("%llx\n", m);
     }
 
     // board = board | k.position;
@@ -76,7 +76,7 @@ void testPawnMoves(){
             m = m | moves[i];
         }
         free(moves);
-        printf("%lx\n", m);
+        printf("%llx\n", m);
     }
 
     
@@ -119,7 +119,7 @@ void testKnightMoves(){
             m = m | moves[i];
         }
         free(moves);
-        printf("%lx\n\n\n", m);
+        printf("%llx\n\n\n", m);
     }
 
 
@@ -171,7 +171,7 @@ void testRookMoves(){
         m = m | moves[i];
     }
     free(moves);
-    printf("%lx\n", m);
+    printf("%llx\n", m);
 }
 
 void testBishopMoves(){
@@ -220,7 +220,7 @@ void testBishopMoves(){
         m = m | moves[i];
     }
     free(moves);
-    printf("%lx\n", m);
+    printf("%llx\n", m);
 }
 
 void testQueenMoves(){
@@ -274,5 +274,5 @@ void testQueenMoves(){
         m = m | moves[i];
     }
     free(moves);
-    printf("%lx\n", m);
+    printf("%llx\n", m);
 }

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int lookForCheckFlag = 1;
+int lookForCheckFlag = 0;
 
 INT* generateMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount){
     switch(p->type){
@@ -35,30 +35,30 @@ INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         //NW move
         if(!(pos & afile)){                             //if piece is not on the a file
             INT npos = pos << 9;                        //create new position by shifting
-            i = calculateKingMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+            i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
 
         //N move
         INT npos = pos << 8;                           //N move position
-        i = calculateKingMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
 
         //NE move
         if(!(pos & hfile)){
             INT npos = pos << 7;                        //NE move position
-            i = calculateKingMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+            i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
     }
 
     //generate W move
     if(!(pos & afile)){
         INT npos = pos << 1;                            //W move position
-        i = calculateKingMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
     }
 
     //generate E move
     if(!(pos & hfile)){
         INT npos = pos >> 1;                             //E move position
-        i = calculateKingMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
     }
 
     //generate SW, S, and SE moves
@@ -66,17 +66,17 @@ INT* generateKingMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
         //SW move
         if(!(pos & afile)){
             INT npos = pos >> 7;                        //SW move position
-            i = calculateKingMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+            i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
 
         //S move
         INT npos = pos >> 8;                            //S move position
-        i = calculateKingMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+        i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
 
         //SE move
         if(!(pos & hfile)){
             INT npos = pos >> 9;                        //SE move position
-            i = calculateKingMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+            i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
     }
 
@@ -282,7 +282,6 @@ INT* generateRookMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
             }  
         }
             free(moves);
-
             return possibleMoves;
     }else{
         free(moves);
@@ -370,7 +369,6 @@ INT* generateKnightMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
             }  
         }
             free(moves);
-
             return possibleMoves;
     }else{
         free(moves);
@@ -438,7 +436,6 @@ INT* generateBishopMoves(piece *p, INT board, INT wboard, INT bboard, int *moveC
             }  
         }
             free(moves);
-
             return possibleMoves;
     }else{
         free(moves);
@@ -462,7 +459,6 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
             npos = pos << 8;
             i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
         }
-       
         
         //generate 2N move
         if((pos & rank2) && !((pos << 16) & board) && !((pos << 8) & board)){
@@ -491,14 +487,13 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
             //NW move
             if(enPassantePiece->position & (pos << 1)){
                 npos = pos << 9;
-                i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);  
+                i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);  
             }
             
-
             //NE move
             if(enPassantePiece->position & (pos >> 1)){
                 npos = pos << 7;
-                i = calculatePawnMove(p, board, wboard, bboard, npos, moves, i, moveCount);
+                i = calculateMove(p, board, wboard, bboard, npos, moves, i, moveCount);
             }
             
         }
@@ -572,7 +567,7 @@ INT* generatePawnMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCou
 }
 
 int calculateMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT *moves, int i, int *moveCount){
-    
+
     if(p->color == WHITE){
         //algorithm for white king
         if(!(npos & wboard)){                           //check for blockers
@@ -633,21 +628,21 @@ int calculateRayMove(piece *p, INT board, INT wboard, INT bboard, INT npos, INT 
 
 
 int isKingInCheck(piece *p, INT npos, INT board, INT wboard, INT bboard, INT color){
-    INT kingPos = 0;
-    if(color == WHITE){
-        if(p->type == KING){
-            kingPos = npos;
-        }else{
-            kingPos = W_King->position;
-        }
-    }else{
-        if(color == WHITE){
-            if(p->type == KING){
-                kingPos = npos;
-            }else{
-                kingPos = B_King->position;
-            }
-        }
-    }
+    // INT kingPos = 0;
+    // if(color == WHITE){
+    //     if(p->type == KING){
+    //         kingPos = npos;
+    //     }else{
+    //         kingPos = W_King->position;
+    //     }
+    // }else{
+    //     if(color == WHITE){
+    //         if(p->type == KING){
+    //             kingPos = npos;
+    //         }else{
+    //             kingPos = B_King->position;
+    //         }
+    //     }
+    // }
     return 0;
 }
