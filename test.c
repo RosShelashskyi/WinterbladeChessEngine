@@ -28,7 +28,7 @@ void testKingMoves(){
             m = m | moves[i];
         }
         free(moves);
-        printf("%llx\n", m);
+        printf("%lx\n", m);
     }
 
     // board = board | k.position;
@@ -58,28 +58,40 @@ void testPawnMoves(){
     INT wboard = 0;
     INT bboard = 0;
     piece pawn;
-    pawn.position = 0x0100000000000000;
+    piece wpawn;
+
+    pawn.position = 0x0020000000000000;
     pawn.type = PAWN;
     pawn.color = BLACK;
 
-    board  = pawn.position;
-    wboard = 0;
+    wpawn.position = 0x0000400000000000;
+    wpawn.type = PAWN;
+    wpawn.color = WHITE;
+
+    board  = pawn.position | wpawn.position;
+    wboard = wpawn.position;
     bboard = pawn.position;
 
-    for(int i = 0; i < 48; i++){
-        pawn.position = pawn.position >> 1;
-        int moveCount = 0;
-        INT *moves = generateMoves(&pawn, board, wboard, bboard, &moveCount);
-        INT m = 0;
-        printf("%d\n", moveCount);
-        for(int i = 0; i < moveCount; i++){  
-            m = m | moves[i];
-        }
-        free(moves);
-        printf("%llx\n", m);
-    }
+    // for(int i = 0; i < 48; i++){
+    //     pawn.position = pawn.position >> 1;
+    //     int moveCount = 0;
+    //     INT *moves = generateMoves(&pawn, board, wboard, bboard, &moveCount);
+    //     INT m = 0;
+    //     printf("%d\n", moveCount);
+    //     for(int i = 0; i < moveCount; i++){  
+    //         m = m | moves[i];
+    //     }
+    //     free(moves);
+    //     printf("%lx\n", m);
+    // }
 
-    
+    int moveCount = 0;
+    INT *moves = generateMoves(&pawn, board, wboard, bboard, &moveCount);
+    printf("%d\n", moveCount);
+    for(int i = 0; i < moveCount; i++){
+        printf("%lx\n", moves[i]);
+    }
+    free(moves);
 }
 
 void testKnightMoves(){
@@ -119,7 +131,7 @@ void testKnightMoves(){
             m = m | moves[i];
         }
         free(moves);
-        printf("%llx\n\n\n", m);
+        printf("%lx\n\n\n", m);
     }
 
 
@@ -171,7 +183,7 @@ void testRookMoves(){
         m = m | moves[i];
     }
     free(moves);
-    printf("%llx\n", m);
+    printf("%lx\n", m);
 }
 
 void testBishopMoves(){
@@ -220,7 +232,7 @@ void testBishopMoves(){
         m = m | moves[i];
     }
     free(moves);
-    printf("%llx\n", m);
+    printf("%lx\n", m);
 }
 
 void testQueenMoves(){
@@ -274,5 +286,35 @@ void testQueenMoves(){
         m = m | moves[i];
     }
     free(moves);
-    printf("%llx\n", m);
+    printf("%lx\n", m);
+}
+
+//function for transforming a position into a human readable chess board format
+char* numToPosition(INT pos){
+    //64 bits, 8 new lines, and one string terminator = 73 chars
+    char result[73];
+    //iterator for the string
+    int strI = 0;
+    //create a mask to shift right each iteration
+    INT mask = 0x1000000000000000;
+    char c;
+    for(int i = 0; i < 64; i++){
+        //get the bit and add it to the result
+        if(pos & (mask >> i)){
+            c = '1';
+        }else{
+            c = '0';
+        }
+        result[strI] = c;
+        strI++;
+        //if the rank should end, add a newline
+        if((i + 1) % 8 == 0){
+            result[strI] = '\n';
+            strI++;
+        }
+    }
+    //add a string terminator
+    result[strI] = '\0';
+
+    return result;
 }
