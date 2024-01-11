@@ -290,13 +290,13 @@ void testQueenMoves(){
 }
 
 //function for transforming a position into a human readable chess board format
-char* numToPosition(INT pos){
+void numToPosition(INT pos, char *str){
     //64 bits, 8 new lines, and one string terminator = 73 chars
     char result[73];
     //iterator for the string
     int strI = 0;
     //create a mask to shift right each iteration
-    INT mask = 0x1000000000000000;
+    INT mask = 0x8000000000000000;
     char c;
     for(int i = 0; i < 64; i++){
         //get the bit and add it to the result
@@ -305,16 +305,14 @@ char* numToPosition(INT pos){
         }else{
             c = '0';
         }
-        result[strI] = c;
+        str[strI] = c;
         strI++;
         //if the rank should end, add a newline
         if((i + 1) % 8 == 0){
-            result[strI] = '\n';
+            str[strI] = '\n';
             strI++;
         }
     }
     //add a string terminator
-    result[strI] = '\0';
-
-    return result;
+    str[strI] = '\0';
 }
