@@ -5,7 +5,7 @@
 #include "board.h"
 #include "board.c"
 #include "moveGenerator.c"
-#include "king.c"
+#include "tests/king.c"
 
 void testKingMoves(){
     moveTest();

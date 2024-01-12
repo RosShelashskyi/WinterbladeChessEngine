@@ -8,7 +8,7 @@
 
 int main(){
     //setupGame();
-    testPawnMoves();
+    testKingMoves();
     return 0;
 }
 

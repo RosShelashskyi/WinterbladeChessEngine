@@ -1,6 +1,6 @@
 #pragma once
-#include "numToPosition.c"
-#include "moveGenerator.h"
+#include "../numToPosition.c"
+#include "../moveGenerator.h"
 
 //full test of the king's moves on every square of the board
 void moveTest(){
@@ -10,7 +10,7 @@ void moveTest(){
     INT bboard = 0;
 
     piece king;
-    king.position = 0x800000000000000;
+    king.position = 0x8000000000000000;
     king.type = KING;
     king.color = WHITE;
 
@@ -24,10 +24,11 @@ void moveTest(){
         INT *moves = generateMoves(&king, board, wboard, bboard, &moveCount);
         INT m = 0;
         for(int i = 0; i < moveCount; i++){
-            char str[73];
-            numToPosition(moves[i], str);
-            printf("%s\n", str);
+            m = m | moves[i];
         }
+        char str[73];
+        numToPosition(m, str);
+        printf("%s\n", str);
     }
 
     printf("BLACK KING\n");
@@ -44,10 +45,11 @@ void moveTest(){
         INT *moves = generateMoves(&king, board, wboard, bboard, &moveCount);
         INT m = 0;
         for(int i = 0; i < moveCount; i++){
-            char str[73];
-            numToPosition(moves[i], str);
-            printf("%s\n", str);
+            m = m | moves[i];
         }
+        char str[73];
+        numToPosition(m, str);
+        printf("%s\n", str);
     }
 
     printf("END OF TEST");
