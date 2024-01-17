@@ -8,6 +8,9 @@
 
 int main(){
     //setupGame();
+    // char str[73];
+    // numToPosition(0x0010000000000000, str);
+    // printf("%s\n", str);
     testKingMoves();
     return 0;
 }

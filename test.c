@@ -8,7 +8,7 @@
 #include "tests/king.c"
 
 void testKingMoves(){
-    moveTest();
+    takeTest();
 }
 
 //full basic test with no other pieces
