@@ -10,7 +10,7 @@ void moveTest(){
     INT bboard = 0;
 
     piece queen;
-    queen.position = 0x8000000000000000
+    queen.position = H1;
 }
 
 //testing the queen being blocked by friendly pieces
