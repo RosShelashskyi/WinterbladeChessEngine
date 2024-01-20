@@ -1,4 +1,5 @@
 #include "typesAndMacros.h"
+#include "numToPosition.h"
 
 //function for transforming a position into a human readable chess board format
 void numToPosition(INT pos, char *str){

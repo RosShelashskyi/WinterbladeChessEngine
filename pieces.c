@@ -1,4 +1,3 @@
-#pragma once
 #include "pieces.h"
 
 //setting the white pieces

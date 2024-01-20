@@ -1,6 +1,4 @@
 #pragma once
-#include "pieces.h"
-#include "board.h"
 #include "typesAndMacros.h"
 
 INT* generateMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCount);

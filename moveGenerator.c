@@ -1,5 +1,6 @@
-#pragma once
 #include "moveGenerator.h"
+#include "pieces.h"
+#include "board.h"
 #include <stdio.h>
 #include <stdlib.h>
 

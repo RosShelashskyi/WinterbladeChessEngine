@@ -1,14 +1,17 @@
 //This file will contain all the functions for testing code;
-#pragma once
+#include <stdio.h>
+#include <stdlib.h>
 #include "typesAndMacros.h"
 #include "pieces.h"
 #include "board.h"
-#include "board.c"
-#include "moveGenerator.c"
-#include "tests/king.c"
+#include "moveGenerator.h"
+#include "tests/king.h"
+#include "tests/queen.h"
+#include "numToPosition.h"
+#include "test.h"
 
 void testKingMoves(){
-    takeTest();
+    kingTakeTest();
 }
 
 //full basic test with no other pieces
@@ -198,56 +201,6 @@ void testBishopMoves(){
 }
 
 void testQueenMoves(){
-        setBoards();
-    INT board = 0;
-    INT wboard = 0;
-    INT bboard = 0;
-    piece queen;
-    queen.position = 0x0000100000000000;
-    queen.type = QUEEN;
-    queen.color = WHITE;
-
-    piece pawn;
-    pawn.position = 0x0000001000000000;
-    pawn.type = PAWN;
-    pawn.color = BLACK;
-
-    board = queen.position | pawn.position;
-    wboard = queen.position;
-    bboard = pawn.position;
-
-    // board = queen.position | pawn.position;
-    // wboard = queen.position | pawn.position;
-    // bboard = 0;
-
-
-    
-    // for(int i = 0; i < 64; i++){
-    //     if(i) queen.position = queen.position >> 1;
-    //     board = queen.position;
-    //     wboard = queen.position;
-    //     int moveCount = 0;
-    //     INT *moves = generateMoves(&queen, board, wboard, bboard, &moveCount);
-    //     INT m = 0;
-    //     printf("Move count: %d\n", moveCount);
-    //     for(int i = 0; i < moveCount; i++){
-    //         //printf("move[%d]: %lx\n", i, moves[i]);
-    //         m = m | moves[i];
-    //     }
-    //     free(moves);
-    //     printf("%lx\n\n", m);
-    // }
-
-    int moveCount = 0;
-    INT *moves = generateMoves(&queen, board, wboard, bboard, &moveCount);
-    INT m = 0;
-    if(moves == 0) return;
-    printf("Move count: %d\n", moveCount);
-    for(int i = 0; i< moveCount; i++){
-        //printf("move[%d]: %lx\n", i, moves[i]);
-        m = m | moves[i];
-    }
-    free(moves);
-    printf("%lx\n", m);
+    queenMoveTest();
 }
 

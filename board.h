@@ -1,5 +1,4 @@
 #pragma once
-#include "pieces.h"
 #include "typesAndMacros.h"
 
 //represents the whole board

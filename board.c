@@ -1,4 +1,5 @@
 #include "board.h"
+#include "pieces.h"
 
 //sets the default values for all the boards
 void setBoards(){

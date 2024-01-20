@@ -1,9 +1,11 @@
-#pragma once
-#include "../numToPosition.c"
+#include "../numToPosition.h"
 #include "../moveGenerator.h"
+#include "../board.h"
+#include "king.h"
+#include <stdio.h>
 
 //full test of the king's moves on every square of the board
-void moveTest(){
+void kingMoveTest(){
     setBoards();
     INT board = 0;
     INT wboard = 0;
@@ -56,7 +58,7 @@ void moveTest(){
 }
 
 //testing the king being blocked by friendly pieces
-void blockTest(){
+void kingBlockTest(){
     setBoards();
     INT board = 0;
     INT wboard = 0;
@@ -166,7 +168,7 @@ void blockTest(){
 }
 
 //testing the king being able to capture enemy pieces
-void takeTest(){
+void kingTakeTest(){
     setBoards();
     INT board = 0;
     INT wboard = 0;
