@@ -1,7 +1,7 @@
 #include "../numToPosition.h"   
 #include "../moveGenerator.h"
 #include "../board.h"
-#include "queen.h"
+#include "rook.h"
 #include "stdio.h"
 
 void rookMoveTest(){
@@ -90,7 +90,6 @@ void rookBlockTest(){
                 pawn.position = D4;
                 break;
             case 4:
-                //bug here?
                 pawn.position = F4;
                 break;
             case 5:
