@@ -201,6 +201,6 @@ void testBishopMoves(){
 }
 
 void testQueenMoves(){
-    queenMoveTest();
+    queenTakeTest();
 }
 

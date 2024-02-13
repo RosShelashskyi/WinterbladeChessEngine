@@ -159,6 +159,7 @@ INT* generateQueenMoves(piece *p, INT board, INT wboard, INT bboard, int *moveCo
         j++;
     }
 
+    blocker = 0;
     //generate NW moves
     j = 9;
     while(pos << j && !((pos << j) & hfile) && !blocker){
