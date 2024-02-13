@@ -7,6 +7,7 @@
 #include "moveGenerator.h"
 #include "tests/king.h"
 #include "tests/queen.h"
+#include "tests/rook.h"
 #include "numToPosition.h"
 #include "test.h"
 
@@ -60,74 +61,35 @@ void testPawnMoves(){
 }
 
 void testKnightMoves(){
-    setBoards();
-    INT board = 0;
-    INT wboard = 0;
-    INT bboard = 0;
-    piece knight;
-    knight.position = 0x8000000000000000;
-    knight.color = WHITE;
-    knight.type = KNIGHT;
+    // setBoards();
+    // INT board = 0;
+    // INT wboard = 0;
+    // INT bboard = 0;
+    // piece knight;
+    // knight.position = 0x8000000000000000;
+    // knight.color = WHITE;
+    // knight.type = KNIGHT;
 
-    board = knight.position;
-    wboard = knight.position;
+    // board = knight.position;
+    // wboard = knight.position;
 
-    // int moveCount = 0;
-    //     INT *moves = generateMoves(&knight, board, wboard, bboard, &moveCount);
-    //     INT m = 0;
-    //     printf("Move count: %d\n", moveCount);
-    //     for(int i = 0; i < moveCount; i++){
-    //         printf("move[%d]: %lx\n", i, moves[i]);
-    //         m = m | moves[i];
-    //     }
-    //     free(moves);
-    //     printf("%lx\n", m);
+    // // int moveCount = 0;
+    // //     INT *moves = generateMoves(&knight, board, wboard, bboard, &moveCount);
+    // //     INT m = 0;
+    // //     printf("Move count: %d\n", moveCount);
+    // //     for(int i = 0; i < moveCount; i++){
+    // //         printf("move[%d]: %lx\n", i, moves[i]);
+    // //         m = m | moves[i];
+    // //     }
+    // //     free(moves);
+    // //     printf("%lx\n", m);
 
-    for(int i = 0; i < 64; i++){
-        if(i) knight.position = knight.position >> 1;
-        board = knight.position;
-        wboard = knight.position;
-        int moveCount = 0;
-        INT *moves = generateMoves(&knight, board, wboard, bboard, &moveCount);
-        INT m = 0;
-        printf("Move count: %d\n", moveCount);
-        for(int i = 0; i < moveCount; i++){
-            //printf("move[%d]: %lx\n", i, moves[i]);
-            m = m | moves[i];
-        }
-        free(moves);
-        printf("%lx\n\n\n", m);
-    }
-
-
-}
-
-void testRookMoves(){
-    setBoards();
-    INT board = 0;
-    INT wboard = 0;
-    INT bboard = 0;
-    piece rook;
-    rook.position = 0x8000000000000000;
-    rook.type = ROOK;
-    rook.color = WHITE;
-
-    piece pawn;
-    pawn.position = 0x0000800000000000;
-    pawn.type = PAWN;
-    pawn.color = BLACK;
-
-    board = rook.position | pawn.position;
-    wboard = rook.position;
-    bboard = pawn.position;
-
-    
     // for(int i = 0; i < 64; i++){
-    //     if(i) rook.position = rook.position >> 1;
-    //     board = rook.position;
-    //     wboard = rook.position;
+    //     if(i) knight.position = knight.position >> 1;
+    //     board = knight.position;
+    //     wboard = knight.position;
     //     int moveCount = 0;
-    //     INT *moves = generateMoves(&rook, board, wboard, bboard, &moveCount);
+    //     INT *moves = generateMoves(&knight, board, wboard, bboard, &moveCount);
     //     INT m = 0;
     //     printf("Move count: %d\n", moveCount);
     //     for(int i = 0; i < moveCount; i++){
@@ -137,67 +99,59 @@ void testRookMoves(){
     //     free(moves);
     //     printf("%lx\n\n\n", m);
     // }
+}
 
-    int moveCount = 0;
-    INT *moves = generateMoves(&rook, board, wboard, bboard, &moveCount);
-    INT m = 0;
-    if(moves == 0) return;
-    printf("Move count: %d\n", moveCount);
-    for(int i = 0; i< moveCount; i++){
-        //printf("move[%d]: %lx\n", i, moves[i]);
-        m = m | moves[i];
-    }
-    free(moves);
-    printf("%lx\n", m);
+void testRookMoves(){
+    rookBlockTest();
 }
 
 void testBishopMoves(){
-    setBoards();
-    INT board = 0;
-    INT wboard = 0;
-    INT bboard = 0;
-    piece bishop;
-    bishop.position = 0x0000200000000000;
-    bishop.type = BISHOP;
-    bishop.color = WHITE;
+    // setBoards();
+    // INT board = 0;
+    // INT wboard = 0;
+    // INT bboard = 0;
+    // piece bishop;
+    // bishop.position = 0x0000200000000000;
+    // bishop.type = BISHOP;
+    // bishop.color = WHITE;
 
-    piece pawn;
-    pawn.position = 0x0000001000000000;
-    pawn.type = PAWN;
-    pawn.color = BLACK;
+    // piece pawn;
+    // pawn.position = 0x0000001000000000;
+    // pawn.type = PAWN;
+    // pawn.color = BLACK;
 
-    board = bishop.position | pawn.position;
-    wboard = bishop.position;
-    bboard = pawn.position;
+    // board = bishop.position | pawn.position;
+    // wboard = bishop.position;
+    // bboard = pawn.position;
 
     
-    // for(int i = 0; i < 64; i++){
-    //     if(i) bishop.position = bishop.position >> 1;
-    //     board = bishop.position;
-    //     wboard = bishop.position;
-    //     int moveCount = 0;
-    //     INT *moves = generateMoves(&bishop, board, wboard, bboard, &moveCount);
-    //     INT m = 0;
-    //     printf("Move count: %d\n", moveCount);
-    //     for(int i = 0; i < moveCount; i++){
-    //         //printf("move[%d]: %lx\n", i, moves[i]);
-    //         m = m | moves[i];
-    //     }
-    //     free(moves);
-    //     printf("%lx\n\n", m);
-    // }
+    // // for(int i = 0; i < 64; i++){
+    // //     if(i) bishop.position = bishop.position >> 1;
+    // //     board = bishop.position;
+    // //     wboard = bishop.position;
+    // //     int moveCount = 0;
+    // //     INT *moves = generateMoves(&bishop, board, wboard, bboard, &moveCount);
+    // //     INT m = 0;
+    // //     printf("Move count: %d\n", moveCount);
+    // //     for(int i = 0; i < moveCount; i++){
+    // //         //printf("move[%d]: %lx\n", i, moves[i]);
+    // //         m = m | moves[i];
+    // //     }
+    // //     free(moves);
+    // //     printf("%lx\n\n", m);
+    // // }
 
-    int moveCount = 0;
-    INT *moves = generateMoves(&bishop, board, wboard, bboard, &moveCount);
-    INT m = 0;
-    if(moves == 0) return;
-    printf("Move count: %d\n", moveCount);
-    for(int i = 0; i< moveCount; i++){
-        //printf("move[%d]: %lx\n", i, moves[i]);
-        m = m | moves[i];
-    }
-    free(moves);
-    printf("%lx\n", m);
+    // int moveCount = 0;
+    // INT *moves = generateMoves(&bishop, board, wboard, bboard, &moveCount);
+    // INT m = 0;
+    // if(moves == 0) return;
+    // printf("Move count: %d\n", moveCount);
+    // for(int i = 0; i< moveCount; i++){
+    //     //printf("move[%d]: %lx\n", i, moves[i]);
+    //     m = m | moves[i];
+    // }
+    // free(moves);
+    // printf("%lx\n", m);
 }
 
 void testQueenMoves(){
