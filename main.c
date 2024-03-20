@@ -1,14 +1,17 @@
 #include "pieces.h"
 #include "board.h"
 #include "typesAndMacros.h"
-#include "test.c"
+#include "test.h"
 #include <stdio.h>
 
 
 
 int main(){
     //setupGame();
-    testQueenMoves();
+    // char str[73];
+    // numToPosition(0x0010000000000000, str);
+    // printf("%s\n", str);
+    testBishopMoves();
     return 0;
 }
 
